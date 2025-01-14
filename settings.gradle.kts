@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "HW_4.1"
+rootProject.name = "MNotes"
 include(":app")
  
