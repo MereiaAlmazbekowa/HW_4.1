@@ -1,5 +1,6 @@
 package com.example.hw_41.fragment
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,18 +8,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.hw_41.adapter.Adapter
 import com.example.hw_41.data.Note
 import com.example.hw_41.R
 import com.example.hw_41.databinding.FragmentNoteListBinding
-import com.example.hw_41.getBackStackData
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+
 class ListNoteFragment : Fragment() {
 
     private lateinit var binding: FragmentNoteListBinding
     private lateinit var noteAdapter: Adapter
     private var list: ArrayList<Note> = ArrayList()
+
+    private val sharedPreferences by lazy {
+        requireActivity().getSharedPreferences("notes_prefs", Context.MODE_PRIVATE)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +36,6 @@ class ListNoteFragment : Fragment() {
         noteAdapter = Adapter()
         initialize()
         setUpListeners()
-        getData()
     }
 
     private fun initialize() {
@@ -46,13 +48,6 @@ class ListNoteFragment : Fragment() {
     private fun setUpListeners() = with(binding) {
         fabAddNote.setOnClickListener {
             findNavController().navigate(R.id.action_noteListFragment_to_addNoteFragment)
-        }
-    }
-
-    private fun getData() {
-        getBackStackData<Note>("note_key") { note ->
-            list.add(note)
-            noteAdapter.submitList(list.toList())
         }
     }
 }

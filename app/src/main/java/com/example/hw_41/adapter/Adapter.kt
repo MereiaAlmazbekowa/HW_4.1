@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hw_41.R
 import com.example.hw_41.data.Note
 import com.example.hw_41.databinding.ItemNoteBinding
-
 class Adapter : ListAdapter<Note, Adapter.NoteViewHolder>(DiffCallback()) {
 
-    class NoteViewHolder(private val binding: ItemNoteBinding): RecyclerView.ViewHolder(binding.root) {
+    class NoteViewHolder(private val binding: ItemNoteBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Note) {
             binding.textViewTitle.text = item.title
@@ -21,7 +21,7 @@ class Adapter : ListAdapter<Note, Adapter.NoteViewHolder>(DiffCallback()) {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
-        val binding = ItemNoteBinding.inflate(LayoutInflater.from(parent.context),parent, false)
+        val binding = ItemNoteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NoteViewHolder(binding)
     }
 
@@ -36,6 +36,7 @@ class Adapter : ListAdapter<Note, Adapter.NoteViewHolder>(DiffCallback()) {
 
         override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean {
             return oldItem.title == newItem.title
+
         }
     }
 }

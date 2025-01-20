@@ -30,15 +30,12 @@ class AddNoteFragment : Fragment() {
     private fun setUpListeners() {
         binding.buttonSaveNote.setOnClickListener {
             val title = binding.editTextTitle.text.toString()
-            val description = binding.editTextDescription.text.toString()
-            val color = getRandomColor()
 
             val note = Note(
                 title = title
             )
             setBackStackData("note_key", note, true)
 
-            setBackStackData("note_key", note, true)
         }
     }
 
