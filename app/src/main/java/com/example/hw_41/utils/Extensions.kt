@@ -1,10 +1,7 @@
-package com.example.hw_41
+package com.example.hw_41.utils
 
-import android.os.Bundle
-import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.hw_41.data.Note
 
 fun <T : Any> Fragment.setBackStackData(key: String, data: T, doBack: Boolean) {
     findNavController().previousBackStackEntry?.savedStateHandle?.set(key, data)

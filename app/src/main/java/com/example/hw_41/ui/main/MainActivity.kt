@@ -1,12 +1,10 @@
-package com.example.hw_41.main
+package com.example.hw_41.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import com.example.hw_41.R
-import com.example.hw_41.fragment.ListNoteFragment
 
 class MainActivity : AppCompatActivity() {
 

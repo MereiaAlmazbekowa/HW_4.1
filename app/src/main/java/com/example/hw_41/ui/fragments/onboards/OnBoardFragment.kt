@@ -1,4 +1,4 @@
-package com.example.hw_41.onboards
+package com.example.hw_41.ui.fragments.onboards
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.hw_41.R
-import com.example.hw_41.adapters.OnBoardAdapter
+import com.example.hw_41.ui.adapters.OnBoardAdapter
 import com.example.hw_41.databinding.FragmentOnBoardBinding
 import com.example.hw_41.utils.PreferenceHelper
 import com.google.android.material.tabs.TabLayout
@@ -58,7 +58,7 @@ class OnBoardFragment : Fragment() {
                     binding.txtSkip.visibility = View.VISIBLE
                     binding.txtSkip.setOnClickListener {
                         if (currentItem < 2) {
-                            setCurrentItem(currentItem + 1, true)
+                            setCurrentItem(currentItem + 2, true)
                         } else {
                             sharedPreferences.setOnBoardingCompleted(true)
                             findNavController().navigate(R.id.action_onBoardFragment_to_noteListFragment)
@@ -70,7 +70,7 @@ class OnBoardFragment : Fragment() {
 
         binding.btnStart.setOnClickListener {
             sharedPreferences.setOnBoardingCompleted(true)
-            findNavController().navigate(R.id.action_noteListFragment_to_addNoteFragment)
+            findNavController().navigate(R.id.action_onBoardFragment_to_noteListFragment)
         }
     }
 

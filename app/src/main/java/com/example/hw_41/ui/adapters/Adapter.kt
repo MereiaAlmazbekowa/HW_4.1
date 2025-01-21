@@ -1,22 +1,27 @@
-package com.example.hw_41.adapter
+package com.example.hw_41.ui.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hw_41.R
-import com.example.hw_41.data.Note
+import com.example.hw_41.data.model.Note
 import com.example.hw_41.databinding.ItemNoteBinding
-class Adapter : ListAdapter<Note, Adapter.NoteViewHolder>(DiffCallback()) {
+import com.example.noteapp.ui.intetface.OnClickItem
+
+class Adapter(
+    private val onLongClick: OnClickItem,
+    private val onClick: OnClickItem
+) : ListAdapter<Note, Adapter.NoteViewHolder>(DiffCallback()) {
 
     class NoteViewHolder(private val binding: ItemNoteBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Note) {
-            binding.textViewTitle.text = item.title
+            binding.tvTitle.text = item.title
+            binding.tvDescription.text = item.description
+            binding.tvData.text = item.data
+            binding.bgItem.setBackgroundColor(item.color)
         }
     }
 
@@ -27,6 +32,14 @@ class Adapter : ListAdapter<Note, Adapter.NoteViewHolder>(DiffCallback()) {
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         holder.bind(getItem(position))
+
+        holder.itemView.setOnLongClickListener {
+            onLongClick.onLongClick(getItem(position))
+            true
+        }
+        holder.itemView.setOnClickListener {
+            onClick.onClick(getItem(position))
+        }
     }
 
     class DiffCallback : DiffUtil.ItemCallback<Note>() {
@@ -36,7 +49,6 @@ class Adapter : ListAdapter<Note, Adapter.NoteViewHolder>(DiffCallback()) {
 
         override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean {
             return oldItem.title == newItem.title
-
         }
     }
 }

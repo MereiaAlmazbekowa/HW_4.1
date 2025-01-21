@@ -1,13 +1,13 @@
-package com.example.hw_41.adapter
+package com.example.hw_41.ui.adapters
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.hw_41.fragment.onboard.OnBoardPagingFragment
+import com.example.hw_41.ui.fragments.onboards.OnBoardPagingFragment
 
 class OnBoardAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int {
-        return 2
+        return 3
     }
 
     override fun createFragment(position: Int) = OnBoardPagingFragment().apply {

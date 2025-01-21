@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/onBoardFragment"
-        android:name="com.example.hw_41.fragment.onboard.OnBoardFragment"
+        android:name="com.example.hw_41.ui.fragments.onboards.OnBoardFragment"
         android:label="OnBoard"
         tools:layout="@layout/fragment_on_board">
         <action
@@ -15,7 +15,7 @@
 
     <fragment
         android:id="@+id/noteListFragment"
-        android:name="com.example.hw_41.fragment.ListNoteFragment"
+        android:name="com.example.hw_41.ui.fragments.note.ListNoteFragment"
         android:label="All Notes"
         tools:layout="@layout/fragment_note_list">
         <action
@@ -25,13 +25,11 @@
 
     <fragment
         android:id="@+id/addNoteFragment"
-        android:name="com.example.hw_41.fragment.AddNoteFragment"
+        android:name="com.example.hw_41.ui.fragments.note.AddNoteFragment"
         android:label="Add Note"
         tools:layout="@layout/fragment_note_add">
-        <action
-            android:id="@+id/action_addNoteFragment_to_noteListFragment"
-            app:popUpTo="@id/noteListFragment"
-            app:popUpToInclusive="true" />
+        <argument android:name="noteId"
+            app:argType="integer"/>
     </fragment>
 
 </navigation>

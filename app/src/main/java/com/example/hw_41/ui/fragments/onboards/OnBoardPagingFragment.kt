@@ -1,4 +1,4 @@
-package com.example.hw_41.onboards
+package com.example.hw_41.ui.fragments.onboards
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
