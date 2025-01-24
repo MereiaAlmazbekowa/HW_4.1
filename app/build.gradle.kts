@@ -54,6 +54,8 @@ dependencies {
     implementation(libs.androidx.navigation.ui)
     implementation (libs.play.services.auth)
     implementation (libs.lottie)
+
+    //Room
     val roomVersion = "2.6.1"
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
