@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">МЗаметки</string>
+    <string name="change_color">Изменить цвет</string>
+    <string name="_21_january_15_45">21 января 15:45</string>
+    <string name="ready">Готово</string>
+    <string name="text">Текст</string>
+    <string name="description">Описание</string>
+    <string name="all_notes">Все заметки</string>
+    <string name="search_notes">Поиск заметок</string>
+    <string name="skip">Пропустить</string>
+    <string name="next">Далее</string>
+    <string name="notes">Заметки</string>
+    <string name="mnotes">Заметки</string>
+    <string name="authorization">Авторизация</string>
+</resources>

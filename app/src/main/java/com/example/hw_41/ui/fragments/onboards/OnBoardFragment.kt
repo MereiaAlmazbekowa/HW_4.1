@@ -34,7 +34,7 @@ class OnBoardFragment : Fragment() {
         sharedPreferences.init(requireContext())
 
         if (sharedPreferences.isOnBoardingCompleted()) {
-            findNavController().navigate(R.id.action_onBoardFragment_to_noteListFragment)
+            findNavController().navigate(R.id.action_onBoardFragment_to_signInFragment)
         } else {
             initialize()
             setupListener()
@@ -61,7 +61,7 @@ class OnBoardFragment : Fragment() {
                             setCurrentItem(currentItem + 2, true)
                         } else {
                             sharedPreferences.setOnBoardingCompleted(true)
-                            findNavController().navigate(R.id.action_onBoardFragment_to_noteListFragment)
+                            findNavController().navigate(R.id.action_onBoardFragment_to_signInFragment)
                         }
                     }
                 }
@@ -70,7 +70,7 @@ class OnBoardFragment : Fragment() {
 
         binding.btnStart.setOnClickListener {
             sharedPreferences.setOnBoardingCompleted(true)
-            findNavController().navigate(R.id.action_onBoardFragment_to_noteListFragment)
+            findNavController().navigate(R.id.action_onBoardFragment_to_signInFragment)
         }
     }
 

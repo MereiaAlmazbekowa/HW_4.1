@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginVertical="16dp"
-            android:text="Все заметки"
+            android:text="@string/all_notes"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
-            android:hint="Поиск заметок"
+            android:hint="@string/search_notes"
             android:layout_marginVertical="24sp"
             android:background="@drawable/bg_grey" />
 

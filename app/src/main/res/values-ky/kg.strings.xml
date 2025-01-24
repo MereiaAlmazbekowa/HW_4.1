@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MБелгилер</string>
+    <string name="change_color">Түсүн өзгөртүү</string>
+    <string name="_21_january_15_45">21 январь 15:45</string>
+    <string name="ready">Даяр</string>
+    <string name="text">Текст</string>
+    <string name="description">Сүрөттөө</string>
+    <string name="all_notes">Бардык белгилер</string>
+    <string name="search_notes">Белгилерди издөө</string>
+    <string name="skip">Өткөрүү</string>
+    <string name="next">Кийинки</string>
+    <string name="notes">Белгилер</string>
+    <string name="mnotes">Белгилер</string>
+    <string name="authorization">Авторизация</string>
+</resources>
