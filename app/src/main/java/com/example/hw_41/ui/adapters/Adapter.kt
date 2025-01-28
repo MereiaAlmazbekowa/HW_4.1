@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hw_41.data.model.Note
 import com.example.hw_41.databinding.ItemNoteBinding
-import com.example.noteapp.ui.intetface.OnClickItem
+import com.example.hw_41.intetface.OnClickItem
 
 class Adapter(
     private val onLongClick: OnClickItem,

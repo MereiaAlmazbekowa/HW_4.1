@@ -15,7 +15,7 @@ import com.example.hw_41.R
 import com.example.hw_41.data.model.Note
 import com.example.hw_41.databinding.FragmentNoteListBinding
 import com.example.hw_41.utils.PreferenceHelper
-import com.example.noteapp.ui.intetface.OnClickItem
+import com.example.hw_41.intetface.OnClickItem
 
 class ListNoteFragment : Fragment(), OnClickItem {
 

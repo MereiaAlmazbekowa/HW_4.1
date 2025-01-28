@@ -1,4 +1,4 @@
-package com.example.noteapp.ui.intetface
+package com.example.hw_41.intetface
 
 import com.example.hw_41.data.model.Note
 

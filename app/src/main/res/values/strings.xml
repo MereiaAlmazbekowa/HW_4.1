@@ -12,4 +12,5 @@
     <string name="notes">Notes</string>
     <string name="mnotes">Notes</string>
     <string name="authorization">Authorization</string>
+    <string name="default_web_client_id">Default web client id</string>
 </resources>
