@@ -48,7 +48,6 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.firebase.auth)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -56,10 +55,14 @@ dependencies {
     implementation(libs.androidx.navigation.ui)
     implementation(libs.play.services.auth)
     implementation(libs.lottie)
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.firestore.ktx)
-
     val roomVersion = "2.6.1"
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+
+    implementation(platform("com.google.firebase:firebase-bom:33.8.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-firestore:25.1.1")
+    implementation("com.google.firebase:firebase-firestore-ktx:25.1.1")
+    implementation("com.google.firebase:firebase-auth-ktx:23.1.0")
+
 }

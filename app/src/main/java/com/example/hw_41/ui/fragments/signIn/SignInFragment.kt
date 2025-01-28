@@ -1,77 +1,100 @@
 package com.example.hw_41.ui.fragments.signIn
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
 import com.example.hw_41.R
 import com.example.hw_41.databinding.FragmentSignInBinding
+import com.example.hw_41.utils.PreferenceHelper
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.auth
 
 class SignInFragment : Fragment() {
-
+    private lateinit var binding: FragmentSignInBinding
+    private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
-    private val RC_SIGN_IN = 9001
-    private var _binding: FragmentSignInBinding? = null
-    private val binding get() = _binding!!
+    private val preferenceHelper = PreferenceHelper()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentSignInBinding.inflate(inflater, container, false)
-
-        binding.btnGoogleSignIn.setOnClickListener {
-            signInWithGoogle()
-        }
-
-        configureGoogleSignIn()
-
-        return binding.root
-    }
-
-    private fun configureGoogleSignIn() {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-
-        googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
-    }
-
-    private fun signInWithGoogle() {
-        val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_SIGN_IN) {
+    private val singInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data: Intent? = result.data
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 val account = task.getResult(ApiException::class.java)
-                Toast.makeText(
-                    requireContext(),
-                    "Sign-in successful: ${account?.email}",
-                    Toast.LENGTH_LONG
-                ).show()
-
-                findNavController().navigate(R.id.action_signInFragment_to_noteListFragment)
+                firebaseAuthWithGoogle(account.idToken)
             } catch (e: ApiException) {
-                Toast.makeText(requireContext(), "Sign-in failed", Toast.LENGTH_SHORT).show()
+                updateUI(null)
             }
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View {
+        binding = FragmentSignInBinding.inflate(inflater, container, false)
+        auth = Firebase.auth
+        preferenceHelper.init(requireContext())
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.web_client_id))
+            .requestEmail()
+            .build()
+        googleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        checkRegistrationStatus()
+        setupClickListener()
+    }
+    private fun checkRegistrationStatus() {
+        if (preferenceHelper.isRegistered()) {
+            findNavController().navigate(R.id.action_signInFragment_to_noteListFragment)
+        }
+    }
+
+    private fun setupClickListener() {
+        binding.btnGoogleSignIn.setOnClickListener {
+            val signInIntent = googleSignInClient.signInIntent
+            singInLauncher.launch(signInIntent)
+            Log.d("shamal", "setupClickListener:")
+        }
+    }
+    private fun firebaseAuthWithGoogle(idToken: String?) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(requireActivity()) { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    preferenceHelper.setRegistered(true)
+                    updateUI(user)
+                } else {
+                    updateUI(null)
+                }
+            }
+    }
+
+    private fun updateUI(user: FirebaseUser?) {
+        if (user != null) {
+            findNavController().navigate(R.id.action_signInFragment_to_noteListFragment)
+        } else {
+            Toast.makeText(requireContext(), "Аутенфикация не удалась", Toast.LENGTH_SHORT).show()
+        }
     }
 }

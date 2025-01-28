@@ -33,4 +33,11 @@ class PreferenceHelper {
     fun setLinearLayout(isLinearLayout: Boolean) {
         sharedPreferences.edit().putBoolean("isLinearLayout", isLinearLayout).apply()
     }
+
+    fun setRegistered(isRegistered: Boolean) {
+        sharedPreferences.edit().putBoolean("isRegistered", isRegistered).apply()
+    }
+    fun isRegistered(): Boolean {
+        return sharedPreferences.getBoolean("isRegistered", false)
+    }
 }

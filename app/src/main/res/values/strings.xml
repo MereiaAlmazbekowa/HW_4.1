@@ -12,5 +12,5 @@
     <string name="notes">Notes</string>
     <string name="mnotes">Notes</string>
     <string name="authorization">Authorization</string>
-    <string name="default_web_client_id">Default web client id</string>
+    <string name="web_client_id" translatable="false">376973060158–8tj7r6vsklj79s3s8466somph5rckfkk.apps.googleusercontent.com</string>
 </resources>
