@@ -1,5 +1,6 @@
 package com.example.hw_41.ui.fragments.note
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.Gravity
@@ -113,6 +114,7 @@ class AddNoteFragment : Fragment() {
         window?.attributes = layoutParams
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun getCurrentTime(): String {
         val date = SimpleDateFormat("dd MMMM HH:mm")
         return date.format(Date())
