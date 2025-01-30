@@ -20,6 +20,8 @@ playServicesAuth = "21.3.0"
 roomVersion = "2.6.1"
 firebaseAuth = "23.1.0"
 firebaseFirestore = "25.1.1"
+firebaseAuthVersion = "23.1.0"
+googleFirebaseCrashlytics = "3.0.2"
 
 [libraries]
 androidx-core = { module = "androidx.core:core", version.ref = "coreKtx" }
@@ -31,6 +33,7 @@ androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomVers
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBomVersion" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 firebase-firestore-ktx = { module = "com.google.firebase:firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
 google-services = { module = "com.google.gms:google-services", version.ref = "googleServices" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -45,8 +48,10 @@ androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation
 androidx_navigation_fragment_ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuthVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+google-firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "googleFirebaseCrashlytics" }
 
